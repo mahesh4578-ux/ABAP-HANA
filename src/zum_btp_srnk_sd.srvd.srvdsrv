@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition  for SRNK'
+define service ZUM_BTP_SRNK_SD {
+  expose ZC_UM_ORDER_SAL as CustSalesPrio;
+}

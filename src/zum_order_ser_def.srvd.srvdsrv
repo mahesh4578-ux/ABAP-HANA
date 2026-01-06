@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Order'
+define service ZUM_ORDER_SER_DEF {
+  expose ZC_UM_ORDER_ANT as SalesAnl;
+}

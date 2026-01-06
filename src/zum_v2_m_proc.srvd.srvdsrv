@@ -1,0 +1,12 @@
+@EndUserText.label: 'Processor app'
+define service ZUM_V2_M_Proc {
+  expose ZUM_TRAVEL_PROC          as Travel;
+  expose ZUM_BOOKING_PROC         as Booking;
+  expose ZUM_BOOKSUPPL_PROC       as BookSupplement;
+  expose /DMO/I_Agency            as Agency;
+  expose /DMO/I_Customer          as Customer;
+  expose /DMO/I_Carrier           as Carrier;
+  expose /DMO/I_Connection        as Connection;
+  expose /DMO/I_Overall_Status_VH as OverallStatus;
+  expose /DMO/I_Booking_Status_VH as BookingStatus;
+}
