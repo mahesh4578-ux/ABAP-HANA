@@ -13,8 +13,8 @@ define view entity ZUM_BOOKSUPPL_PROC as projection on ZUM_M_BOOKSUPPL
    CurrencyCode,
    LastChangedAt,
    /* Associations */
-   _Booking : redirected to ZUM_BOOKING_PROC,
+   _Booking : redirected to parent ZUM_BOOKING_PROC,
   // _Product,
   // _SupplementText,
-   _Travel 
+   _Travel : redirected to  ZUM_TRAVEL_PROC
 }

@@ -237,7 +237,7 @@ DATA : o_rand    TYPE REF TO cl_abap_random_int,
            n         TYPE i,
            seed      TYPE i,
            lv_date   TYPE timestamp,
-           lv_ord_id TYPE zats_mm_dte_id,
+           lv_ord_id TYPE zum_btp_del_no,
            lt_so     TYPE TABLE OF zum_btp_ord_h,
            lt_so_i   TYPE TABLE OF zum_btp_ord_i.
 

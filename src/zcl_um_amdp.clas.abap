@@ -56,6 +56,7 @@ CLASS zcl_um_amdp IMPLEMENTATION.
 
     result := :x + :y;
 
+
   ENDMETHOD.
 
   METHOD get_new_variable.

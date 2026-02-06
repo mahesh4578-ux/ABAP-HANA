@@ -3,6 +3,7 @@
 @Metadata.ignorePropagatedAnnotations: true
 define root view entity ZUM_M_TRAVEL as select from /dmo/travel_m
 ///dmo.composition of target_data_source_name as _association_name
+
 composition[0..*] of ZUM_M_BOOKING as _Booking
 association[1] to /DMO/I_Agency as _Agency on 
  $projection.AgencyId = _Agency.AgencyID
@@ -44,8 +45,8 @@ $projection.OverallStatus = _OverallStatus.OverallStatus
  case overall_status
     when 'O' then 2
     when 'A' then 3
-    when 'R' then 1
-    when 'X' then 1
+    when 'R' then 0
+    when 'X' then 0
     end as Criticality,    
  /* Expose*/
  _Booking,

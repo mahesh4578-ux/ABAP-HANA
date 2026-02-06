@@ -22,4 +22,5 @@ define view entity ZC_UM_ORDER_ANT as select from ZI_UM_ORDER_CB
  //@AnalyticsDetails.query.axis  : #ROWS
  UnitOfMeasure
    
+   
 } 

@@ -31,22 +31,24 @@ define root view entity ZUM_TRAVEL_PROC as projection on ZUM_M_TRAVEL
     TotalPrice,
     CurrencyCode,
     Description,
+    @ObjectModel.text.element: [ 'StatusText' ]
     @Consumption.valueHelpDefinition:[{
-    entity.name: '/DMO/I_Travel_Status_VH',
-    entity.element: 'TravelStatus'
+    entity.name: '/DMO/I_Overall_Status_VH',
+    entity.element: 'OverallStatus'
     }]
-    @ObjectModel.text.element: [ 'StatusTexT' ]
+    
     OverallStatus,
     CreatedBy,
     CreatedAt,
     LastChangedBy,
     LastChangedAt,
+    
     @Semantics.text: true
     StatusText,
     Criticality,
     /* Associations */
     _Agency,
-    _Booking,
+    _Booking : redirected to composition child ZUM_BOOKING_PROC,
     _Currency,
     _Customer,
     _OverallStatus
