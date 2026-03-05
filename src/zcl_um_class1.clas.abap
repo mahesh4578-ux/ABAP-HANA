@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_um_class1 IMPLEMENTATION.
+CLASS ZCL_UM_CLASS1 IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

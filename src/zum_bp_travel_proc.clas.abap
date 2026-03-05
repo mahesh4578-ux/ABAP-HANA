@@ -1,0 +1,5 @@
+CLASS zum_bp_travel_proc DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zum_travel_proc.
+ENDCLASS.
+
+CLASS zum_bp_travel_proc IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,11 @@
+@EndUserText.label: 'Service Definition for Approver'
+define service ZUM_V2_M_APPR {
+  expose ZUM_TRAVEL_APPR          as Travel;
+  expose ZUM_BOOKING_APPR         as Booking;
+  expose /DMO/I_Agency            as Agency;
+  expose /DMO/I_Customer          as Customer;
+  expose /DMO/I_Carrier           as Carrier;
+  expose /DMO/I_Connection        as Connection;
+  expose /DMO/I_Overall_Status_VH as OverallStatus;
+  expose /DMO/I_Booking_Status_VH as BookingStatus;
+}

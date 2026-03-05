@@ -13,7 +13,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_um_test_bh_pool IMPLEMENTATION.
+CLASS ZCL_UM_TEST_BH_POOL IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
@@ -22,6 +22,7 @@ CLASS zcl_um_test_bh_pool IMPLEMENTATION.
     out->write( exporTING data = itab ).
 *   endloop.
   ENDMETHOD.
+
 
   METHOD test_method.
    data lv_text TYPE string.

@@ -15,7 +15,7 @@ ENDCLASS.
 
 
 
-CLASS zum_btp_data_upd IMPLEMENTATION.
+CLASS ZUM_BTP_DATA_UPD IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
@@ -24,6 +24,8 @@ CLASS zum_btp_data_upd IMPLEMENTATION.
     fill_transaction_data(  ).
     out->write(  data = 'Success' ).
   ENDMETHOD.
+
+
   METHOD fill_master_data.
   DATA : lt_cust   TYPE TABLE OF zum_btp_custtab,
          lt_prod   TYPE TABLE OF zum_btp_mattab.
@@ -232,6 +234,7 @@ CLASS zum_btp_data_upd IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD fill_transaction_data.
 DATA : o_rand    TYPE REF TO cl_abap_random_int,
            n         TYPE i,
@@ -299,10 +302,10 @@ DATA : o_rand    TYPE REF TO cl_abap_random_int,
 
   ENDMETHOD.
 
+
   METHOD flush.
 
   DELETE FROM : zum_btp_custtab, zum_btp_mattab, zum_btp_ord_h, zum_btp_ord_i.
 
   ENDMETHOD.
-
 ENDCLASS.

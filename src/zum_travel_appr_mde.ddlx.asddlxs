@@ -5,7 +5,7 @@
   title: { value: 'TravelId' },
   description : { value: '_Customer.FirstName' }
 }
-annotate view ZUM_TRAVEL_PROC
+annotate view ZUM_TRAVEL_APPR
     with 
 {
     @UI.facet:[ { 
@@ -73,13 +73,8 @@ annotate view ZUM_TRAVEL_PROC
                                                   
                ]
     @UI.selectionField:[{ position: 10 }]
-    @UI.lineItem: [ { position : 10 } ,
-    { type: #FOR_ACTION ,label: 'copy Travel' , 
-    //inline: true,
-    dataAction: 'copyTravel'}]
-     @UI.identification: [ { position : 10 },
-    { type: #FOR_ACTION ,label: 'copy Iden' , 
-    dataAction: 'copyTravel'}]
+    @UI.lineItem: [ { position : 10 } ]
+    @UI.identification: [ { position : 10 }]
     TravelId;
     @UI.selectionField:[{ position: 20 }]
     @UI.lineItem: [ { position : 20 } ]
@@ -106,16 +101,15 @@ annotate view ZUM_TRAVEL_PROC
     CurrencyCode;
   //  Description;
     @UI.selectionField:[{ position: 50 }]
-    @UI.lineItem: [ { position : 70 , criticality: 'Criticality' , importance: #HIGH} ]
+    @UI.lineItem: [ { position : 70 , criticality: 'Criticality' , importance: #HIGH},
+                   { type: #FOR_ACTION , label: 'Approve',  dataAction: 'acceptTravel' }, 
+                   { type: #FOR_ACTION , label: 'Reject',  dataAction: 'rejectTravel' } ]
+    @UI.identification: [ { type: #FOR_ACTION , label: 'Approve',  dataAction: 'acceptTravel' }, 
+                   { type: #FOR_ACTION , label: 'Reject',  dataAction: 'rejectTravel' }  ]     
     @UI.dataPoint:{ qualifier: 'status' ,title: 'Travel Status',criticality: 'Criticality'}
     @UI.fieldGroup: [ { qualifier: 'dates',label: 'status',position: 30  } ]
     OverallStatus;
-    @UI.lineItem: [ { position : 80 ,  importance: #HIGH} ]
-    @EndUserText.label : 'CO2Tax'
-    CO2Tax;
-    @UI.lineItem: [ { position : 90 ,  importance: #HIGH} ]
-    @EndUserText.label : 'Day of Flight'
-    dayOfTheFlight;   
+  
     
  //  @UI.fieldGroup: [ { qualifier: 'admin',label: 'created by',position: 10  } ]
  //  CreatedBy;

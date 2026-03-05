@@ -4,6 +4,8 @@ CLASS lhc_booking DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS earlynumbering_cba_Bookingsupp FOR NUMBERING
       IMPORTING entities FOR CREATE booking\_Bookingsupplement.
+    METHODS calculateTotalPrice FOR DETERMINE ON MODIFY
+      IMPORTING keys FOR booking~calculateTotalPrice.
 
 ENDCLASS.
 
@@ -45,12 +47,22 @@ CLASS lhc_booking IMPLEMENTATION.
           assIGNING fielD-SYMBOL(<mapped_bookingsuppl>).
           If <mapped_bookingsuppl>-BookingSupplementId is initIAL.
             max_booking_suppl_id += 1.
+            <mapped_bookingsuppl>-%is_draft = <bookingsuppl_wo_numbers>-%is_draft.
             <mapped_bookingsuppl>-BookingSupplementid = max_booking_suppl_id.
           endif.
          endloop.
 
       Endloop.
     Endloop.
+  ENDMETHOD.
+
+  METHOD calculateTotalPrice.
+   data travel_ids type stANDARD TABLE OF zum_travel_proc with uniqUE haSHED KEY key comPONENTS travelid.
+   travel_ids = corrESPONDING #( keys discARDING DUPLICATES mapping travelid = TravelId ).
+   moDIFY eNTITIES OF zum_m_travel in LOCAL MODE
+     enTITY Travel
+     EXECUTE recalctotalprice
+     from corRESPONDING #( travel_ids ).
   ENDMETHOD.
 
 ENDCLASS.

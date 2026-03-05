@@ -2,7 +2,8 @@
 managed implementation in class  zbp_um_m_travel unique;
 //Guidelines and best practice for definition to be followed
 strict ( 2 );
-
+//draft feature at bo level
+with draft;
 
 //Define the behavior for root entity
 define behavior for ZUM_M_TRAVEL alias travel
@@ -12,19 +13,24 @@ implementation in class  zbp_um_m_travel unique
 persistent table /dmo/travel_m
 
 lock master
+//Mandatory to add total etag
+total etag LastChangedAt
 // Controls the permissions and security settings for RAP BO
 authorization master ( instance )
+draft table zum_d_travel
 etag master LastChangedAt
 early numbering
 with additional save
 {
-  create ( authorization : global );
-  update;
+  create ( precheck , authorization : global );
+  update ( precheck );
   delete;
   field ( readonly ) TravelId;
 
 // booking ccan only be created the travel request
-  association _Booking { create; }
+// add draft also for booking
+  association _Booking { create (features:instance); with draft;}
+
 
   internal  action reCalcTotalPrice;
 
@@ -37,6 +43,25 @@ with additional save
   field ( mandatory ) agencyId, CustomerId, BeginDate, EndDate , OverallStatus , BookingFee, CurrencyCode;
 
   factory action copyTravel[1];
+
+// Non factory actions
+  action(features : instance) acceptTravel result[1] $self;
+  action(features : instance) rejectTravel result[1] $self;
+
+  determine action  validationCustomer { validation validateHeaderData; }
+// Adding  side-effect which  inform RAP to reload  the total price if the booking
+// fee has been changed on the forntend
+  side effects {
+   field Bookingfee affects field TotalPrice;
+   determine action validationCustomer executed on field CustomerId affects messages ;
+  }
+
+  draft determine action prepare;
+  draft action edit;
+  draft action resume;
+  draft action activate;
+  draft action discard;
+
 
   mapping for /dmo/travel_m
   {
@@ -64,6 +89,7 @@ define behavior for ZUM_M_BOOKING alias booking
 implementation in class  zbp_um_m_booking unique
 // Framework to insert data in this db table for booking request
 persistent table /dmo/booking_m
+draft table zum_d_book
 lock dependent by _Travel
 authorization dependent by _Travel
 etag master LastChangedAt
@@ -73,8 +99,17 @@ early numbering
   delete;
   field ( readonly ) TravelId, BookingId;
   field ( mandatory ) CarrierId, ConnectionId, FlightDate, BookingStatus;
-  association _Travel;
-  association _BookingSupplement { create; }
+  association _Travel { with draft; }
+  association _BookingSupplement { create; with draft; }
+
+ // add a determination for the change in the booking also
+  determination calculateTotalPrice on modify
+            { field FlightPrice , CurrencyCode; }
+
+  side effects {
+   field FlightPrice affects field _travel.TotalPrice;
+   }
+
   mapping for /dmo/booking_m
   {
    TravelId   = travel_id;
@@ -97,6 +132,7 @@ define behavior for ZUM_M_BOOKSUPPL alias bookSuppl
 implementation in class  zbp_um_m_booksuppl unique
 // Framework to insert data in this db table for booking supplement request
 persistent table /dmo/booksuppl_m
+draft table zum_d_booksp
 lock dependent by _Travel
 authorization dependent by _Travel
 etag master LastChangedAt

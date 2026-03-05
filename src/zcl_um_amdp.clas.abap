@@ -27,7 +27,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_um_amdp IMPLEMENTATION.
+CLASS ZCL_UM_AMDP IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
@@ -48,6 +48,7 @@ CLASS zcl_um_amdp IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD add_numbers by datABASE pROCEDURE FOR HDB LANGUAGE sqlSCRIPT opTIONS reAD-ONLY.
     DECLARE x intEGER;
     DECLARE y integer;
@@ -59,14 +60,17 @@ CLASS zcl_um_amdp IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD get_new_variable.
     r_result = me->new_variable.
   ENDMETHOD.
+
 
   METHOD get_customer_by_id by datABASE pROCEDURE FOR HDB LANGUAGE sqlSCRIPT opTIONS reAD-ONLY
                             using zum_btp_custtab.
    select company_name into e_res from zum_btp_custtab where cust_id = :iv_cust_id;
   ENDMETHOD.
+
 
   METHOD get_product_by_mrp by datABASE pROCEDURE FOR HDB LANGUAGE sqlSCRIPT opTIONS reAD-ONLY
                             using zum_btp_mattab.
@@ -97,6 +101,7 @@ CLASS zcl_um_amdp IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD get_total_sales by DATABASE fUNCTION FOR HDB LANGUAGE SQLSCRIPT
                         opTIONS reAD-ONLY
                         usING Zum_btp_custtab zum_btp_ord_h zum_btp_ord_i.
@@ -118,5 +123,4 @@ CLASS zcl_um_amdp IMPLEMENTATION.
 
 
   ENDMETHOD.
-
 ENDCLASS.

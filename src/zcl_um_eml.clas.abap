@@ -12,7 +12,8 @@ ENDCLASS.
 
 
 
-CLASS zcl_um_eml IMPLEMENTATION.
+CLASS ZCL_UM_EML IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
    CASE lv_opr.

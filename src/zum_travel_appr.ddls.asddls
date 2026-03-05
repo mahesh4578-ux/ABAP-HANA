@@ -2,7 +2,7 @@
 @EndUserText.label: 'Travel Processor'
 @Metadata.ignorePropagatedAnnotations: true
 @Metadata.allowExtensions: true
-define root view entity ZUM_TRAVEL_PROC as projection on ZUM_M_TRAVEL
+define root view entity ZUM_TRAVEL_APPR as projection on ZUM_M_TRAVEL
 {
     @ObjectModel.text.element: ['Description']
     key TravelId,
@@ -42,22 +42,15 @@ define root view entity ZUM_TRAVEL_PROC as projection on ZUM_M_TRAVEL
     CreatedAt,
     LastChangedBy,
     LastChangedAt,
-    
+   
     @Semantics.text: true
     StatusText,
     Criticality,
     /* Associations */
     _Agency,
-    _Booking : redirected to composition child ZUM_BOOKING_PROC,
+    _Booking : redirected to composition child ZUM_BOOKING_APPR,
     _Currency,
     _Customer,
-    _OverallStatus,
-    @ObjectModel.virtualElementCalculatedBy: 'ABAP:ZCL_UM_VE_CALC'
-    @EndUserText.label: 'CO2 Tax'
-    
-    virtual CO2Tax : abap.int4,
-    @ObjectModel.virtualElementCalculatedBy: 'ABAP:ZCL_UM_VE_CALC'
-    @EndUserText.label: 'Week Day'
-    
-    virtual dayOfTheFlight : abap.char( 9 )
+    _OverallStatus
+
 }

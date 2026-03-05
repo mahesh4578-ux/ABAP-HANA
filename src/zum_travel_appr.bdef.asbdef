@@ -1,0 +1,34 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZUM_TRAVEL_APPR alias travel
+{
+//  use create;
+  use update;
+ // use delete;
+
+  field (readonly) TravelId,agencyid,customerId,begindate,enddate,
+                   totalprice,currencycode,description;
+
+
+  use action acceptTravel;
+  use action rejectTravel;
+
+
+  use action prepare;
+  use action edit;
+  use action resume;
+  use action activate;
+  use action discard;
+
+  use association _Booking ;
+}
+
+define behavior for ZUM_BOOKING_APPR alias booking
+{
+  //use update;
+  //use delete;
+
+  use association _Travel { with draft; }
+}
