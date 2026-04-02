@@ -1,0 +1,14 @@
+unmanaged implementation in class zbp_um_i_emp_u unique;
+strict ( 2 );
+
+define behavior for ZUM_I_EMP_U alias employee
+//late numbering
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) empnum;
+}

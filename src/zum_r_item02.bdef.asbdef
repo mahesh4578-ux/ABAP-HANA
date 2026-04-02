@@ -1,0 +1,44 @@
+managed implementation in class zbp_um_r_item02 unique;
+strict ( 2 );
+with draft;
+
+define behavior for zum_r_item02 alias Item
+implementation in class zbp_um_r_item02 unique
+persistent table zum_item02
+draft table zum_item02_d
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ,numbering : managed ) ItemId;
+
+
+  draft action Activate;
+  draft action Edit;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+
+  validation checkprice on save { create; update; field Price; }
+  determination setDefaultStatus  on modify { create; }
+  action ( features : instance ) approveOrder result [1] $self;
+
+    mapping for zum_item02
+    {
+      ItemId      = item_id;
+      Name        = name;
+      Description = description;
+      Price       = price;
+      StatusCode  = status_code;
+      LastChangedAt = last_changed_at;
+      LocalCreatedAt = local_created_at;
+      LocalCreatedBy = local_created_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LocalLastChangedBy = local_last_changed_by;
+    }
+}

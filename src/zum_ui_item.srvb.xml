@@ -4,30 +4,30 @@
   <asx:values>
    <SRVB>
     <METADATA>
-     <NAME>ZUM_V4_MSB_PROC</NAME>
+     <NAME>ZUM_UI_ITEM</NAME>
      <TYPE>SRVB/SVB</TYPE>
-     <DESCRIPTION>Odata Processor v4 binding</DESCRIPTION>
+     <DESCRIPTION>service binding</DESCRIPTION>
      <LANGUAGE>EN</LANGUAGE>
      <MASTER_LANGUAGE>EN</MASTER_LANGUAGE>
      <ABAP_LANGU_VERSION>5</ABAP_LANGU_VERSION>
     </METADATA>
     <CONTENT>
      <BIND_TYPE_IMPL>
-      <NAME>ZUM_V4_MSB_PROC</NAME>
+      <NAME>ZUM_UI_ITEM</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
      <BIND_TYPE_VERSION>V4</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
-       <SERVICE_NAME>ZUM_V2_M_PROC</SERVICE_NAME>
+       <SERVICE_NAME>ZUM_SD_ITEM</SERVICE_NAME>
        <SERVICE_CONTENT>
         <item>
          <SERVICE_VERSION>0001</SERVICE_VERSION>
          <RELEASE_STATE>NOT_RELEASED</RELEASE_STATE>
          <SRVD_REF>
-          <URI>/sap/bc/adt/ddic/srvd/sources/zum_v2_m_proc</URI>
+          <URI>/sap/bc/adt/ddic/srvd/sources/zum_sd_item</URI>
           <TYPE>SRVD/SRV</TYPE>
-          <NAME>ZUM_V2_M_PROC</NAME>
+          <NAME>ZUM_SD_ITEM</NAME>
          </SRVD_REF>
          <BIND_TYPE_DATA>
           <CONTENT>
@@ -41,7 +41,9 @@
     </CONTENT>
     <CONTRACT>C1</CONTRACT>
     <RELEASE_SUPPORTED>true</RELEASE_SUPPORTED>
+    <PUBLISHED>true</PUBLISHED>
     <BINDING_CREATED>true</BINDING_CREATED>
+    <ALLOWED_ACTION>UNPUBLISH</ALLOWED_ACTION>
    </SRVB>
   </asx:values>
  </asx:abap>

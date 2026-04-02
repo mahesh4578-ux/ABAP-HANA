@@ -1,0 +1,22 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for zum_c_item02 alias Item
+{
+  use create;
+  use update;
+  use delete;
+
+  use action approveOrder;
+   side effects
+  {
+    action approveOrder affects $self, field statusCode;
+  }
+
+  use action Activate;
+  use action Edit;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+}

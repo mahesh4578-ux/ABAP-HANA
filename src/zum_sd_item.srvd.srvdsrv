@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for item'
+define service Zum_sd_item {
+  expose zum_c_item02 as Item;
+}

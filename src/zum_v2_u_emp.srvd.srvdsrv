@@ -1,0 +1,4 @@
+@EndUserText.label: 'emp def'
+define service Zum_v2_u_emp {
+  expose ZUM_C_EMP_U;
+}
